@@ -1,4 +1,6 @@
---DDL (CREATE TABLE)
+-- =========================
+-- DDL (CREATE TABLE)
+-- =========================
 
 CREATE TABLE staff (
     id_staff NUMBER(7) PRIMARY KEY,
@@ -6,7 +8,6 @@ CREATE TABLE staff (
     password VARCHAR2(10) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 
 CREATE TABLE pemilik_toko (
     id_pemilik NUMBER(7) PRIMARY KEY,
@@ -17,7 +18,7 @@ CREATE TABLE pemilik_toko (
 
 CREATE TABLE meja (
     id_meja NUMBER(7) PRIMARY KEY,
-    Nomor_meja NUMBER(3) NOT NULL,
+    nomor_meja NUMBER(3) NOT NULL,
     qr_code CLOB,
     status VARCHAR2(30),
     CONSTRAINT chk_status_meja CHECK (status IN ('kosong', 'terisi'))
@@ -98,53 +99,58 @@ CREATE TABLE perhitungan_margin (
 );
 
 
---DML (INSERT TABLE)
+-- =========================
+-- DML (INSERT DATA)
+-- =========================
 
-INSERT INTO staff (id_staff, username, password) VALUES (1, 'denzell_satriya', 'denzell123');
-INSERT INTO staff (id_staff, username, password) VALUES (2, 'ayub_destama', 'ayub123');
-INSERT INTO staff (id_staff, username, password) VALUES (3, 'naufal_ariq', 'naufal123');
-INSERT INTO staff (id_staff, username, password) VALUES (4, 'sheva_ibrahim', 'sheva123');
+INSERT INTO staff VALUES (1, 'denzell_satriya', 'denzell123', CURRENT_TIMESTAMP);
+INSERT INTO staff VALUES (2, 'ayub_destama', 'ayub123', CURRENT_TIMESTAMP);
+INSERT INTO staff VALUES (3, 'naufal_ariq', 'naufal123', CURRENT_TIMESTAMP);
+INSERT INTO staff VALUES (4, 'sheva_ibrahim', 'sheva123', CURRENT_TIMESTAMP);
 
-INSERT INTO pemilik_toko (id_pemilik, username, password) VALUES (1, 'mbak_dira', 'dira123');
+INSERT INTO pemilik_toko VALUES (1, 'mbak_dira', 'dira123', CURRENT_TIMESTAMP);
 
-INSERT INTO meja (id_meja, Nomor_meja, qr_code, status) VALUES (1, 1, 'https://cafepakcek.com/table/1', 'terisi');
-INSERT INTO meja (id_meja, Nomor_meja, qr_code, status) VALUES (2, 2, 'https://cafepakcek.com/table/2', 'terisi');
-INSERT INTO meja (id_meja, Nomor_meja, qr_code, status) VALUES (3, 3, 'https://cafepakcek.com/table/3', 'terisi');
-INSERT INTO meja (id_meja, Nomor_meja, qr_code, status) VALUES (4, 4, 'https://cafepakcek.com/table/4', 'terisi');
-INSERT INTO meja (id_meja, Nomor_meja, qr_code, status) VALUES (5, 5, 'https://cafepakcek.com/table/5', 'kosong');
+INSERT INTO meja VALUES (1, 1, 'https://cafepakcek.com/table/1', 'terisi');
+INSERT INTO meja VALUES (2, 2, 'https://cafepakcek.com/table/2', 'terisi');
+INSERT INTO meja VALUES (3, 3, 'https://cafepakcek.com/table/3', 'terisi');
+INSERT INTO meja VALUES (4, 4, 'https://cafepakcek.com/table/4', 'terisi');
+INSERT INTO meja VALUES (5, 5, 'https://cafepakcek.com/table/5', 'kosong');
 
-INSERT INTO pelanggan (id_pelanggan, nama, id_meja) VALUES (1, 'Lacey Junelly', 1);
-INSERT INTO pelanggan (id_pelanggan, nama, id_meja) VALUES (2, 'Karen Romay', 2);
-INSERT INTO pelanggan (id_pelanggan, nama, id_meja) VALUES (3, 'Citra Kasih', 3);
-INSERT INTO pelanggan (id_pelanggan, nama, id_meja) VALUES (4, 'Tuan Putri', 4);
+INSERT INTO pelanggan VALUES (1, 'Lacey Junelly', 1, CURRENT_TIMESTAMP);
+INSERT INTO pelanggan VALUES (2, 'Karen Romay', 2, CURRENT_TIMESTAMP);
+INSERT INTO pelanggan VALUES (3, 'Citra Kasih', 3, CURRENT_TIMESTAMP);
+INSERT INTO pelanggan VALUES (4, 'Tuan Putri', 4, CURRENT_TIMESTAMP);
 
-INSERT INTO menu (id_menu, id_pemilik, nama_menu, nama_kategori, harga) VALUES (1, 1, 'Nasi Goreng', 'Makanan', 25000);
-INSERT INTO menu (id_menu, id_pemilik, nama_menu, nama_kategori, harga) VALUES (2, 1, 'Bakmi Goreng', 'Makanan', 22000);
-INSERT INTO menu (id_menu, id_pemilik, nama_menu, nama_kategori, harga) VALUES (3, 1, 'Nasi Campur', 'Makanan', 27000);
-INSERT INTO menu (id_menu, id_pemilik, nama_menu, nama_kategori, harga) VALUES (4, 1, 'Es Pisang Ijo', 'Camilan', 15000);
-INSERT INTO menu (id_menu, id_pemilik, nama_menu, nama_kategori, harga) VALUES (5, 1, 'Ramen', 'Makanan', 35000);
-INSERT INTO menu (id_menu, id_pemilik, nama_menu, nama_kategori, harga) VALUES (6, 1, 'Gorengan', 'Camilan', 5000);
-INSERT INTO menu (id_menu, id_pemilik, nama_menu, nama_kategori, harga) VALUES (7, 1, 'Es Teh Manis', 'Minuman', 5000);
+INSERT INTO menu VALUES (1, 1, 'Nasi Goreng', 'Makanan', 25000, CURRENT_TIMESTAMP);
+INSERT INTO menu VALUES (2, 1, 'Bakmi Goreng', 'Makanan', 22000, CURRENT_TIMESTAMP);
+INSERT INTO menu VALUES (3, 1, 'Nasi Campur', 'Makanan', 27000, CURRENT_TIMESTAMP);
+INSERT INTO menu VALUES (4, 1, 'Es Pisang Ijo', 'Camilan', 15000, CURRENT_TIMESTAMP);
+INSERT INTO menu VALUES (5, 1, 'Ramen', 'Makanan', 35000, CURRENT_TIMESTAMP);
+INSERT INTO menu VALUES (6, 1, 'Gorengan', 'Camilan', 5000, CURRENT_TIMESTAMP);
+INSERT INTO menu VALUES (7, 1, 'Es Teh Manis', 'Minuman', 5000, CURRENT_TIMESTAMP);
 
-INSERT INTO perhitungan_margin (id_margin, id_pemilik, id_menu, harga_modal, harga_jual, margin_nominal, margin_persen) VALUES (1, 1, 1, 15000, 25000, 10000, 40.00);
-INSERT INTO perhitungan_margin (id_margin, id_pemilik, id_menu, harga_modal, harga_jual, margin_nominal, margin_persen) VALUES (2, 1, 2, 13000, 22000, 9000, 40.91);
-INSERT INTO perhitungan_margin (id_margin, id_pemilik, id_menu, harga_modal, harga_jual, margin_nominal, margin_persen) VALUES (3, 1, 3, 17000, 27000, 10000, 37.04);
-INSERT INTO perhitungan_margin (id_margin, id_pemilik, id_menu, harga_modal, harga_jual, margin_nominal, margin_persen) VALUES (4, 1, 4, 9000, 15000, 6000, 40.00);
-INSERT INTO perhitungan_margin (id_margin, id_pemilik, id_menu, harga_modal, harga_jual, margin_nominal, margin_persen) VALUES (5, 1, 5, 20000, 35000, 15000, 42.86);
-INSERT INTO perhitungan_margin (id_margin, id_pemilik, id_menu, harga_modal, harga_jual, margin_nominal, margin_persen) VALUES (6, 1, 6, 2000, 5000, 3000, 60.00);
-INSERT INTO perhitungan_margin (id_margin, id_pemilik, id_menu, harga_modal, harga_jual, margin_nominal, margin_persen) VALUES (7, 1, 7, 2000, 5000, 3000, 60.00);
+INSERT INTO perhitungan_margin VALUES (1, 1, 1, 15000, 25000, 10000, 40.00, CURRENT_TIMESTAMP);
+INSERT INTO perhitungan_margin VALUES (2, 1, 2, 13000, 22000, 9000, 40.91, CURRENT_TIMESTAMP);
+INSERT INTO perhitungan_margin VALUES (3, 1, 3, 17000, 27000, 10000, 37.04, CURRENT_TIMESTAMP);
+INSERT INTO perhitungan_margin VALUES (4, 1, 4, 9000, 15000, 6000, 40.00, CURRENT_TIMESTAMP);
+INSERT INTO perhitungan_margin VALUES (5, 1, 5, 20000, 35000, 15000, 42.86, CURRENT_TIMESTAMP);
+INSERT INTO perhitungan_margin VALUES (6, 1, 6, 2000, 5000, 3000, 60.00, CURRENT_TIMESTAMP);
+INSERT INTO perhitungan_margin VALUES (7, 1, 7, 2000, 5000, 3000, 60.00, CURRENT_TIMESTAMP);
 
-INSERT INTO pemesanan (id_pemesanan, id_meja, id_pelanggan, status, total_harga) VALUES (1, 1, 1, 'diproses', 40000); --memesan ramen (35k dan es teh manis 5k), total=40k
+INSERT INTO pemesanan VALUES (1, 1, 1, 'diproses', 40000, CURRENT_TIMESTAMP);
 
-INSERT INTO detail_pemesanan (id_dp, id_pemesanan, id_menu, qty, harga_saat_pesan, catatan) VALUES (1, 1, 5, 1, 35000, 'Kuah pedas level 5');
-INSERT INTO detail_pemesanan (id_dp, id_pemesanan, id_menu, qty, harga_saat_pesan, catatan) VALUES (2, 1, 7, 1, 5000, 'Manis murni');
+INSERT INTO detail_pemesanan VALUES (1, 1, 5, 1, 35000, 'Kuah pedas level 5');
+INSERT INTO detail_pemesanan VALUES (2, 1, 7, 1, 5000, 'Manis murni');
 
-INSERT INTO pembayaran (id_bayar, id_pemesanan, status, waktu_bayar) VALUES (1, 1, 'lunas', CURRENT_TIMESTAMP);
+INSERT INTO pembayaran VALUES (1, 1, 'lunas', CURRENT_TIMESTAMP);
 
-INSERT INTO konfirmasi_pemesanan (id_konfirmasi, id_pemesanan, id_staff, status_konfirmasi) VALUES (1, 1, 1, 'siap diproduksi');
+INSERT INTO konfirmasi_pemesanan VALUES (1, 1, 1, 'siap diproduksi', CURRENT_TIMESTAMP);
 
 
---VIEW laporan keuntungan menu
+-- =========================
+-- VIEW
+-- =========================
+
 CREATE OR REPLACE VIEW view_laporan_margin AS
 SELECT 
     m.id_menu,
@@ -157,8 +163,6 @@ SELECT
 FROM menu m
 JOIN perhitungan_margin pm ON m.id_menu = pm.id_menu;
 
-
---VIEW antrean dapur aktif
 CREATE OR REPLACE VIEW view_antrean_dapur AS
 SELECT 
     p.id_pemesanan,
@@ -169,28 +173,141 @@ SELECT
 FROM pemesanan p
 JOIN pelanggan pl ON p.id_pelanggan = pl.id_pelanggan
 JOIN konfirmasi_pemesanan kp ON p.id_pemesanan = kp.id_pemesanan
-WHERE kp.status_konfirmasi = 'siap diproduksi' 
-  AND p.status = 'menunggu';
+WHERE kp.status_konfirmasi = 'siap diproduksi'
+  AND p.status IN ('menunggu', 'diproses');
 
-
---VIEW riwayat transaksi
 CREATE OR REPLACE VIEW view_riwayat_transaksi AS
 SELECT 
     p.id_pemesanan AS nota,
     pl.nama AS nama_pelanggan,
-    m.Nomor_meja AS nomor_meja,
+    m.nomor_meja,
     p.total_harga AS total_bayar,
-    pemb.status AS status_bayar,
+    pb.status AS status_bayar,
     kp.status_konfirmasi AS status_antrean,
     p.status AS status_pesanan
 FROM pemesanan p
 JOIN pelanggan pl ON p.id_pelanggan = pl.id_pelanggan
 JOIN meja m ON p.id_meja = m.id_meja
-JOIN pembayaran pemb ON p.id_pemesanan = pemb.id_pemesanan
+JOIN pembayaran pb ON p.id_pemesanan = pb.id_pemesanan
 JOIN konfirmasi_pemesanan kp ON p.id_pemesanan = kp.id_pemesanan;
 
+CREATE OR REPLACE VIEW view_pesanan_per_meja AS
+SELECT 
+    mj.nomor_meja,
+    COUNT(p.id_pemesanan) AS jumlah_pesanan,
+    NVL(SUM(p.total_harga), 0) AS total_transaksi
+FROM meja mj
+LEFT JOIN pemesanan p ON mj.id_meja = p.id_meja
+GROUP BY mj.nomor_meja;
 
---MENAMPILKAN TABEL (SELECT)
+CREATE OR REPLACE VIEW view_pembayaran_belum_lunas AS
+SELECT 
+    p.id_pemesanan,
+    pl.nama AS nama_pelanggan,
+    mj.nomor_meja,
+    p.total_harga,
+    pb.status AS status_pembayaran
+FROM pemesanan p
+JOIN pelanggan pl ON p.id_pelanggan = pl.id_pelanggan
+JOIN meja mj ON p.id_meja = mj.id_meja
+JOIN pembayaran pb ON p.id_pemesanan = pb.id_pemesanan
+WHERE pb.status <> 'lunas';
+
+CREATE OR REPLACE VIEW view_detail_nota_pelanggan AS
+SELECT 
+    p.id_pemesanan AS nota,
+    pl.nama AS nama_pelanggan,
+    mj.nomor_meja,
+    m.nama_menu,
+    dp.qty,
+    dp.harga_saat_pesan,
+    dp.qty * dp.harga_saat_pesan AS subtotal,
+    dp.catatan
+FROM pemesanan p
+JOIN pelanggan pl ON p.id_pelanggan = pl.id_pelanggan
+JOIN meja mj ON p.id_meja = mj.id_meja
+JOIN detail_pemesanan dp ON p.id_pemesanan = dp.id_pemesanan
+JOIN menu m ON dp.id_menu = m.id_menu;
+
+
+-- =========================
+-- PROCEDURE
+-- =========================
+
+CREATE OR REPLACE PROCEDURE pr_batalkan_pesanan(p_id_pemesanan NUMBER)
+IS
+BEGIN
+    UPDATE pembayaran
+    SET status = 'belum bayar'
+    WHERE id_pemesanan = p_id_pemesanan;
+
+    UPDATE pemesanan
+    SET status = 'dibatalkan'
+    WHERE id_pemesanan = p_id_pemesanan;
+
+    UPDATE konfirmasi_pemesanan
+    SET status_konfirmasi = 'dibatalkan'
+    WHERE id_pemesanan = p_id_pemesanan;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE pr_selesaikan_pesanan(p_id_pemesanan NUMBER)
+IS
+BEGIN
+    UPDATE pemesanan
+    SET status = 'selesai'
+    WHERE id_pemesanan = p_id_pemesanan;
+
+    UPDATE meja
+    SET status = 'kosong'
+    WHERE id_meja = (
+        SELECT id_meja
+        FROM pemesanan
+        WHERE id_pemesanan = p_id_pemesanan
+    );
+END;
+/
+
+
+-- =========================
+-- FUNCTION
+-- =========================
+
+CREATE OR REPLACE FUNCTION fn_total_omzet
+RETURN NUMBER
+IS
+    total_omzet NUMBER;
+BEGIN
+    SELECT NVL(SUM(p.total_harga), 0)
+    INTO total_omzet
+    FROM pemesanan p
+    JOIN pembayaran pb ON p.id_pemesanan = pb.id_pemesanan
+    WHERE pb.status = 'lunas'
+      AND p.status = 'selesai';
+
+    RETURN total_omzet;
+END;
+/
+
+CREATE OR REPLACE FUNCTION fn_rata_margin_kategori(p_kategori VARCHAR2)
+RETURN NUMBER
+IS
+    rata_margin NUMBER;
+BEGIN
+    SELECT NVL(AVG(pm.margin_persen), 0)
+    INTO rata_margin
+    FROM menu m
+    JOIN perhitungan_margin pm ON m.id_menu = pm.id_menu
+    WHERE m.nama_kategori = p_kategori;
+
+    RETURN rata_margin;
+END;
+/
+
+
+-- =========================
+-- SELECT DATA TABEL
+-- =========================
 
 SELECT * FROM staff;
 SELECT * FROM pemilik_toko;
@@ -203,19 +320,37 @@ SELECT * FROM pembayaran;
 SELECT * FROM konfirmasi_pemesanan;
 SELECT * FROM perhitungan_margin;
 
+
+-- =========================
+-- SELECT VIEW
+-- =========================
+
 SELECT * FROM view_laporan_margin;
 SELECT * FROM view_antrean_dapur;
 SELECT * FROM view_riwayat_transaksi;
+SELECT * FROM view_pesanan_per_meja;
+SELECT * FROM view_pembayaran_belum_lunas;
+SELECT * FROM view_detail_nota_pelanggan;
 
---omset pendapatan cafe
-SELECT SUM(total_harga) AS total_omzet_kafe 
-FROM pemesanan 
-WHERE status = 'selesai';
 
---rata2 persentase keuntungan per kategori menu
-SELECT 
-    m.nama_kategori AS kategori,
-    AVG(pm.margin_persen) AS rata_rata_persen_untung
-FROM menu m
-JOIN perhitungan_margin pm ON m.id_menu = pm.id_menu
-GROUP BY m.nama_kategori;
+-- =========================
+-- TEST FUNCTION DAN PROCEDURE
+-- =========================
+
+-- Cek omzet awal
+SELECT fn_total_omzet() AS total_omzet_kafe FROM dual;
+
+-- Ubah pesanan menjadi selesai
+EXEC pr_selesaikan_pesanan(1);
+
+-- Cek omzet setelah pesanan selesai, hasil 40000
+SELECT fn_total_omzet() AS total_omzet_kafe FROM dual;
+
+-- Cek rata-rata margin kategori makanan
+SELECT fn_rata_margin_kategori('Makanan') AS rata_margin_makanan FROM dual;
+
+-- Simulasi pesanan dibatalkan/refund
+EXEC pr_batalkan_pesanan(1);
+
+-- Cek omzet setelah dibatalkan
+SELECT fn_total_omzet() AS total_omzet_kafe FROM dual;
